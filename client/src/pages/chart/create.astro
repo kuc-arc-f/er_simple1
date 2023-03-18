@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LibCrud from '../../lib/LibCrud';
+
+export type Post = {
+  id: number;
+  name: string;
+};
+//
+const items: Post[]  = await LibCrud.getList();
+console.log(items);
+---
+
+<Layout title="Welcome to Astro.">
+	<div class="container">
+		<a href={`/chart`}>[ Back ]</a>
+		<hr class="my-2" />		
+		<h1>Chart-Create</h1>
+		<p class="instructions">
+		</p>
+		<hr class="my-2" />
+		<div class="col-sm-6">
+			<label>Title:</label>
+			<input type="text" name="title" id="title" class="form-control"
+			   />
+		</div>
+		<div class="col-sm-12 mb-4">
+			<label>Content:</label>
+			<hr class="my-2" />
+			<textarea name="content" id="content" class="form-control"
+			rows="14" placeholder="mermaid input, please"></textarea><br />
+			<button id="btn_save" class="btn btn-primary">Save</button>
+		</div>
+	</div>
+</Layout>
+<!-- -->
+<style>
+</style>
+<!-- -->
+<script src="./ChartCreate.ts"></script>
+
+<!--
+<input type="text" name="content" id="content" class="form-control"
+/>	
+-->

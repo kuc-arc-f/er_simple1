@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { trpc } from '../../utils/trpc';
+
+console.log("#trpc/index");
+//const url = import.meta.env.PUBLIC_API_URL;
+//console.log("url=", url);
+//
+const hello = await trpc.hello.query();
+console.log(hello);	
+//const user = await trpc.userById.query('1');
+//console.log(user);
+const userList = await trpc.user.getUserList.query();
+console.log("#userList");
+console.log(userList);
+//taskCreate
+const taskList = await trpc.task.getTaskList.query();
+console.log("#taskList");
+console.log(taskList);
+---
+
+<Layout title="Welcome to Astro.">
+	<main class="container">
+		<a href={`/`}>[ Top ]</a>
+		<hr />		
+		<a href={`/trpc/create`}>[ Add ]</a>
+		<hr />
+		<h1>tRPC</h1>
+		<p class="instructions">hoge123
+		</p>
+		<hr />
+		hello : {hello}
+		<hr />
+		<ul>
+		{
+		taskList.map((item) => (
+		<li>
+			<a href={`/trpc/show/${item.id}`}>{item.title}</a>
+			<a href={`/trpc/edit/${item.id}`}>[edit]</a>
+			<hr />
+		</li>
+		))
+		}
+		</ul>		
+		<!--
+		<button id="btn_save" class="btn btn-primary">Add</button>
+		 -->
+	</main>
+</Layout>
+<!-- -->
+<style>
+</style>
+<!-- -->
+<script src="./Test.ts"></script>
