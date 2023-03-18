@@ -6,7 +6,7 @@
 
  date    : 2023/03/17 
 
- update  : 2023/03/18
+ update  : 2023/03/18 
 
 ***
 ### Summary
@@ -18,6 +18,12 @@ Astro 2 + tRPC sample, Mermaid ER Chart app
 
 * client: ./client
 * server: ./server
+
+***
+### migration
+
+* schema.prisma
+* https://gist.github.com/kuc-arc-f/85e31a063affef8763f24ef0d2a7efcf
 
 ***
 ### blog
