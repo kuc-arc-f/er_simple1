@@ -14,12 +14,13 @@ const Crud = {
       const valid = await LibCrud.validLogin();
 //console.log("valid=", valid);
       if(valid === false) {
-        alert("NG, valid Login");
+//        alert("NG, valid Login");
       }
       //btn
       const button: any = document.querySelector('#btn_save');
-      button.addEventListener('click', () => {
-        LibCrud.update();
+      button.addEventListener('click', async() => {
+        const res = await LibCrud.update();
+        window.location.href = '/trpc';	
       }); 
     } catch (e) {
       console.error(e);

@@ -41,6 +41,32 @@ console.log(result);
     return result;
   }),
   /**
+   * 
+   * @param
+   *
+   * @return
+   */  
+  update: publicProcedure
+  .input(z.object({
+    id: z.number(),
+    title: z.string(),
+    content: z.string(),
+    userId: z.number(),
+  }))
+  .mutation(async (req) => {
+//console.log(req.input.title);
+    const item = {
+      id: req.input.id,
+      title: req.input.title,
+      content: "",
+      userId: 0,
+    }
+console.log(item);
+    const result = await LibTask.update(item);
+console.log(result);
+    return result;
+  }),  
+  /**
    * getTask
    * @param
    *

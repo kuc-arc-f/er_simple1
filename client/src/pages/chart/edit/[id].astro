@@ -2,12 +2,15 @@
 import Layout from '../../../layouts/Layout.astro';
 import LibCrud from '../../../lib/LibCrud';
 import type { Post } from '../index.astro';
+import { trpc } from '../../../utils/trpc';
 
 //
 const { id } = Astro.params;
 console.log(id);
-let item: any = await LibCrud.get(Number(id));
+let item = {};
+item = await trpc.chart.get.query(String(id));
 console.log(item);
+console.log("content=", item.content);
 ---
 <!-- -->
 <style>
@@ -16,22 +19,33 @@ console.log(item);
 <!-- MarkUp -->
 <Layout title="Welcome to Astro.">
 	<main class="container">
-		<a class="btn btn-outline-primary" href={`/crud`}>Back</a>
+		<a class="btn btn-outline-primary" href={`/chart`}>Back</a>
 		<hr />		
-		<h1>CrudEdit</h1>
+		<h1>Edit</h1>
 		<p>Id:{id}</p>
 		<hr />
 		<div class="col-sm-6">
 			<input type="hidden" value={id} id="item_id" />
-			<input type="text" name="name" id="name" class="form-control" value={item.name}
-			/><br />		
-			<button id="btn_save" class="btn btn-primary">Save</button>
+			<label>Title:</label>
+			<input type="text" name="title" id="title" class="form-control"
+			value={item.title}   />
 		</div>
+		<div class="col-sm-12 mb-4">
+			<label>Content:</label>
+			<hr class="my-2" />
+			<textarea name="content" id="content" class="form-control"
+			rows="14" placeholder="mermaid input, please"
+			>{item.content}</textarea><br />
+			<button id="btn_save" class="btn btn-primary">Save</button>
+		</div>			
+
 	</main>
 </Layout>
-<!-- -->
 
-
-<!-- <p>Name: {item.name}</p> -->
+<script src="../ChartEdit.ts"></script>
+<!--
+	<button id="btn_save" class="btn btn-primary">Save</button>
+	 <p>Name: {item.name}</p> 
+-->
 
 

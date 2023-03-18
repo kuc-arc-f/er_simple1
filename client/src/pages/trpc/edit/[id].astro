@@ -16,14 +16,15 @@ console.log(item);
 <!-- MarkUp -->
 <Layout title="Welcome to Astro.">
 	<main class="container">
-		<a class="btn btn-outline-primary" href={`/crud`}>Back</a>
+		<a class="btn btn-outline-primary" href={`/trpc`}>Back</a>
 		<hr />		
 		<h1>CrudEdit</h1>
 		<p>Id:{id}</p>
 		<hr />
 		<div class="col-sm-6">
 			<input type="hidden" value={id} id="item_id" />
-			<input type="text" name="name" id="name" class="form-control" value={item.name}
+			<input type="text" name="title" id="title" class="form-control"
+			 value={item.title}
 			/><br />		
 			<button id="btn_save" class="btn btn-primary">Save</button>
 		</div>
@@ -32,6 +33,5 @@ console.log(item);
 <!-- -->
 <script src="../CrudEdit.ts"></script>
 
-<!-- <p>Name: {item.name}</p> -->
 
 

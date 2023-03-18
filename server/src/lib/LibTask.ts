@@ -73,7 +73,34 @@ console.log(req);
       throw new Error('Error , addTask: '+ err);
     }    
   },
-  updateTask :async function(args: any){
+  /**
+  * 
+  * @param
+  *
+  * @return
+  */  
+  update :async function(args: any){
+    try {
+      console.log(args.id);
+      const text = `
+      UPDATE public."Task" SET title = $1,
+      content = $2,
+      "updatedAt" = current_timestamp
+      WHERE id = $3
+      RETURNING *
+      `;  
+      const client = LibPg.getClient();
+      const values = [args.title, args.content, args.id]
+      const result = await LibPg.execute(text, values);
+//console.log(result);
+          client.end();
+      return {
+        ret: LibConfig.OK_CODE, data: result
+      };
+    } catch (err) {
+      console.error(err);
+      throw new Error('Error , deleteTask:' +err);
+    }     
   },  
   /**
   * 

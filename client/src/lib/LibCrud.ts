@@ -100,23 +100,6 @@ console.log(task);
       item = await trpc.task.deleteTask.mutate(String(id));
 console.log(item);
       return item;
-/*
-      const item = {
-        id: Number(id),
-      }
-      const response = await fetch(LibConfig.API_URL + "/chats/delete", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', },
-        body: JSON.stringify(item),
-      });       
-      const json = await response.json();
-console.log(json.data);
-      if(json.ret !== LibConfig.OK_CODE) {
-        throw new Error(await response.text());
-      }
-      ret = json.data;
-      window.location.href = '/crud';	
-*/
     } catch (e) {
       console.error(e);
     }
@@ -134,22 +117,18 @@ console.log(json.data);
       const id = elm?.value;      
       const name = document.querySelector<HTMLInputElement>('#name');
       const item = {
-        name: name?.value,
-        content : '',
         id: Number(id),
+        title: title?.value,
+        content : '',
+        userId: 0,
       }
-//console.log(item);
-      const res = await fetch(LibConfig.API_URL + "/chats/update", {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', },
-        body: JSON.stringify(item),
-      });      
-      const json = await res.json();
-      console.log(json);
-      if(json.ret !== 'OK'){
+console.log(item);
+      const task: any = await trpc.task.update.mutate(item);
+console.log(task);
+      if(task.ret !== 'OK'){
         throw new Error('Error , update');
       }
-      window.location.href = '/crud';	
+      return;
     } catch (e) {
       console.error(e);
     }
