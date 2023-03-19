@@ -10,5 +10,7 @@ const LibConfig = {
 
   //session_key
   SESSION_KEY_USER: "user",
+  //cookie
+  COOKIE_KEY_AUTH: "key_astro_user_auth"  
 }
 export default LibConfig;

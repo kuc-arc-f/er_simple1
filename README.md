@@ -6,7 +6,7 @@
 
  date    : 2023/03/17 
 
- update  : 2023/03/18 
+ update  : 2023/03/19 
 
 ***
 ### Summary
@@ -27,6 +27,8 @@ Astro 2 + tRPC sample, Mermaid ER Chart app
 
 ***
 ### blog
+
+https://zenn.dev/knaka0209/books/b5e25eac05b2c5
 
 ***
 
