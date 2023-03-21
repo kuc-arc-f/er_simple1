@@ -1,7 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 //import LibCrud from '../../../lib/LibCrud';
-//import type { Post } from '../index.astro';
 import { trpc } from '../../../utils/trpc';
 
 //
@@ -21,7 +20,7 @@ console.log(item);
 		<a class="btn btn-outline-primary my-1" href={`/chart`}>Back</a>
 		<hr class="my-1" />		
 		<h3>ER chart: {item.title}</h3>
-		<p class="my-1">Id:{id}</p>
+		<p class="my-1">Id:{id} , {item.createdAt}</p>
 		<hr class="my-1" />
 		<pre class="mermaid">{item.content}</pre>
 		<hr />

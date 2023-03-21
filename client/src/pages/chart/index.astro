@@ -6,12 +6,8 @@ console.log("#trpc/index");
 //
 const hello = await trpc.hello.query();
 console.log(hello);	
-//const user = await trpc.userById.query('1');
-//console.log(user);
 //const userList = await trpc.getUserList.query();
-console.log("#userList");
 //console.log(userList);
-// getList: publicProcedure.query(async () => {
 //
 const chartList = await trpc.chart.getList.query();
 console.log("#chartList");
@@ -23,14 +19,16 @@ console.log(chartList);
 	<main class="container">
 		<a href={`/`}>[ Top ]</a>
 		<h1>ER Chart</h1>
-		<a href={`/chart/create`}>[ Add ]</a>
+		<a href={`/chart/create`} class="btn btn-primary">Create</a>
 		<hr />
 		<ul>
 		{
 		chartList.map((item) => (
 		<li>
-			<a href={`/chart/show/${item.id}`}>{item.title}</a>
-			<a href={`/chart/edit/${item.id}`}>[edit]</a>
+			<a href={`/chart/show/${item.id}`}><h3>{item.title}</h3>
+			</a>
+			<a href={`/chart/edit/${item.id}`}>[edit]</a><br />
+			<span>ID: {item.id}, {item.createdAt}</span>
 			<hr />
 		</li>
 		))
