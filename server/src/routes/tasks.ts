@@ -15,8 +15,25 @@ export const taskRouter = router({
    */  
   getTaskList: publicProcedure.query(async () => {
     const items = await LibTask.getItems();
+//console.log(items);
     return items;
   }),
+  /**
+   * 
+   * @param
+   *
+   * @return
+   */   
+  search: publicProcedure
+  .input(z.object({
+    search_key: z.string(),
+  }))
+  .mutation(async (req) => {
+//console.log(req.input.search_key);
+    const items = await LibTask.search(req.input.search_key);
+//console.log(item);
+    return items;
+  }),   
   /**
    * taskCreate
    * @param

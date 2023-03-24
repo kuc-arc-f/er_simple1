@@ -21,15 +21,21 @@ console.log(taskList);
 
 <Layout title="Welcome to Astro.">
 	<main class="container">
-		<a href={`/`}>[ Top ]</a>
-		<hr />		
 		<a href={`/trpc/create`}>[ Add ]</a>
 		<hr />
 		<h1>tRPC</h1>
-		<p class="instructions">hoge123
-		</p>
 		<hr />
-		hello : {hello}
+		<div class="row">
+			<div class="col-md-12 pt-2">
+				<span class="search_key_wrap">
+					<input type="text" size="24" class="mx-2 " name="searchKey" id="searchKey"
+					placeholder="Title search Key">
+				</span>
+				<button class="btn btn-sm btn-outline-primary" id="search_btn">Search
+				</button>
+			</div>
+		</div>
+
 		<hr />
 		<ul>
 		{
@@ -42,13 +48,18 @@ console.log(taskList);
 		))
 		}
 		</ul>		
-		<!--
-		<button id="btn_save" class="btn btn-primary">Add</button>
-		 -->
 	</main>
 </Layout>
 <!-- -->
 <style>
 </style>
+
 <!-- -->
-<script src="./Test.ts"></script>
+<script src="./Crud.ts"></script>
+
+<!--
+<button class="btn btn-sm btn-outline-primary">Clear</button>
+<a href={`/`}>[ Top ]</a>
+<hr />		
+ -->
+

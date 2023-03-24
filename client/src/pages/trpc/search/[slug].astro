@@ -1,0 +1,61 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import LibCrud from '../../../lib/LibCrud';
+import type { Post } from '../index.astro';
+import { trpc } from '../../../utils/trpc';
+
+//
+const { slug } = Astro.params;
+console.log("slug=", slug);
+const items = await trpc.task.search.mutate({search_key: slug});
+console.log(items);
+
+---
+<!-- -->
+<style>
+</style>
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+	<main class="container">
+		<a class="btn btn-outline-primary" href={`/trpc`}>Back</a>
+		<hr />		
+		<h1>Search Result</h1>
+		<hr />
+		<div class="col-md-12 pt-2">
+			keyword :
+			<span class="search_key_wrap">
+				<input type="text" size="24" class="mx-2 " name="searchKey" id="searchKey"
+				value={slug} placeholder="Title search Key">
+			</span>
+			<button class="btn btn-sm btn-outline-primary" id="search_btn">Search
+			</button>
+		</div>		
+		<hr />
+		<ul>
+		{
+		items.map((item) => (
+		<li>
+			<a href={`/trpc/show/${item.id}`}>{item.title}</a>
+			<a href={`/trpc/edit/${item.id}`}>[edit]</a>
+			<hr />
+		</li>
+		))
+		}
+		</ul>		
+	</main>
+</Layout>
+<!-- -->
+<script src="../CrudSearch.ts"></script>
+
+<!--
+<hr />
+<p>keyword: {slug}</p>
+
+<button id="btn_delete" class="btn btn-danger">Delete</button>
+
+		<p>title: {item.title}</p>
+	<p>Id:{id}</p>
+<input type="hidden" value={id} id="item_id" />
+ -->
+

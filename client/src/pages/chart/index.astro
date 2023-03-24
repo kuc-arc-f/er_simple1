@@ -21,13 +21,25 @@ console.log(chartList);
 		<h1>ER Chart</h1>
 		<a href={`/chart/create`} class="btn btn-primary">Create</a>
 		<hr />
+		<div class="row">
+			<div class="col-md-12 pt-2">
+				<span class="search_key_wrap">
+					<input type="text" size="24" class="mx-2 " name="searchKey" id="searchKey"
+					placeholder="Title search Key">
+				</span>
+				<button class="btn btn-sm btn-outline-primary" id="search_btn">Search
+				</button>
+			</div>
+		</div>		
+		<hr />
 		<ul>
 		{
 		chartList.map((item) => (
 		<li>
 			<a href={`/chart/show/${item.id}`}><h3>{item.title}</h3>
 			</a>
-			<a href={`/chart/edit/${item.id}`}>[edit]</a><br />
+			<a href={`/chart/edit/${item.id}`} 
+			class="btn btn-sm btn-outline-primary">Edit</a><br />
 			<span>ID: {item.id}, {item.createdAt}</span>
 			<hr />
 		</li>
@@ -43,4 +55,4 @@ console.log(chartList);
 <style>
 </style>
 <!-- -->
-<script src="./Test.ts"></script>
+<script src="./Chart.ts"></script>

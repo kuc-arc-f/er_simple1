@@ -1,28 +1,7 @@
 import LibCrud from '../../lib/LibCrud';
+import Crud from './Crud';
 
-const Chart = {
-  /**
-  *
-  * @param
-  *
-  * @return
-  */   
-  search : async function() : Promise<void>
-  {
-    try{
-      const searchKey = document.querySelector<HTMLInputElement>('#searchKey');
-console.log(searchKey?.value)
-      const sKey = searchKey?.value;
-      if(sKey !== "") {
-        location.href = "/chart/search/" + sKey;
-      }
-    } catch (e) {
-      console.error("Error, search");
-      console.error(e);
-      throw new Error('Error , search');
-    }
-  }, 
-
+const CrudSearch = {
   /**
   * startProc
   * @param
@@ -42,14 +21,14 @@ console.log(searchKey?.value)
       const button: any = document.querySelector('#search_btn');
       button.addEventListener('click', async () => {
 console.log("#search_btn");
-          await this.search();
+        await Crud.search();
       });       
     } catch (e) {
       console.error(e);
     }    
-  },
+  } 
 }
 //
-Chart.startProc();
+CrudSearch.startProc();
 
-export default Chart;
+export default CrudSearch;

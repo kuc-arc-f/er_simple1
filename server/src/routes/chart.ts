@@ -18,6 +18,23 @@ export const chartRouter = router({
     return items;
   }),
   /**
+   * 
+   * @param
+   *
+   * @return
+   */   
+  search: publicProcedure
+  .input(z.object({
+    search_key: z.string(),
+  }))
+  .mutation(async (req) => {
+//console.log(req.input.search_key);
+    const items = await LibChart.search(req.input.search_key);
+//console.log(items);
+    return items;
+  }),   
+
+  /**
    * taskCreate
    * @param
    *

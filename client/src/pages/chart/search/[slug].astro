@@ -1,0 +1,61 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import LibCrud from '../../../lib/LibCrud';
+import type { Post } from '../index.astro';
+import { trpc } from '../../../utils/trpc';
+
+//
+const { slug } = Astro.params;
+console.log("slug=", slug);
+const items = await trpc.chart.search.mutate({search_key: slug});
+console.log(items);
+
+---
+<!-- -->
+<style>
+</style>
+
+<!-- MarkUp -->
+<Layout title="Welcome to Astro.">
+	<main class="container">
+		<a class="btn btn-outline-primary" href={`/chart`}>Back</a>
+		<hr />		
+		<h1>Search Result</h1>
+		<hr />
+		<div class="col-md-12 pt-2">
+			keyword :
+			<span class="search_key_wrap">
+				<input type="text" size="24" class="mx-2 " name="searchKey" id="searchKey"
+				value={slug} placeholder="Title search Key">
+			</span>
+			<button class="btn btn-sm btn-outline-primary" id="search_btn">Search
+			</button>
+		</div>		
+		<hr />
+		<ul>
+		{
+		items.map((item) => (
+		<li>
+			<a href={`/chart/show/${item.id}`}><h3>{item.title}</h3>
+			</a>
+			<a href={`/chart/edit/${item.id}`} 
+			class="btn btn-sm btn-outline-primary">Edit</a><br />
+			<span>ID: {item.id}, {item.createdAt}</span>
+			<hr />			
+		</li>
+		))
+		}
+		</ul>		
+	</main>
+</Layout>
+<!-- -->
+<script src="../ChartSearch.ts"></script>
+
+<!--
+<hr />
+<p>keyword: {slug}</p>
+<a href={`/chart/show/${item.id}`}>{item.title}</a>
+<a href={`/chart/edit/${item.id}`}>[edit]</a>
+<hr />
+-->
+

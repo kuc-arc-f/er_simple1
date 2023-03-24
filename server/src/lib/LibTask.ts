@@ -12,7 +12,7 @@ const  LibTask = {
   getItems :async function(){
     try {
       const text = `
-       SELECT * FROM public."Task" ORDER BY id DESC LIMIT 100
+       SELECT * FROM public."Task" ORDER BY id DESC LIMIT 1000
       `;
       const client = LibPg.getClient();
       const res = await client.query(text);
@@ -23,7 +23,32 @@ const  LibTask = {
       console.error(err);
       throw new Error('Error , getItems:' +err);
     }          
-  },    
+  },  
+  /**
+  * 
+  * @param
+  *
+  * @return
+  */   
+  search :async function(search_key: string) : Promise<any>
+  {
+    try {
+      const text = `
+       SELECT * FROM public."Task" 
+       WHERE title like '%${search_key}%'
+       ORDER BY id DESC
+       LIMIT 1000
+      `;
+      const client = LibPg.getClient();
+      const res = await client.query(text);
+      client.end();
+//console.log(res.rows);
+      return res.rows;      
+    } catch (err) {
+      console.error(err);
+      throw new Error('Error , getItems:' +err);
+    }          
+  }, 
   /**
   * 
   * @param
